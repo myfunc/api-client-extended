@@ -1,1 +1,52 @@
-style.css
+body {
+	margin: -10px 5px 0px -10px;
+}
+
+.main-container {
+	margin: 10px;
+	display: grid;
+	grid-template-columns: 25% 75%;
+	grid-template-rows: 50px 300px 300px 50px;
+	column-gap: 15px;
+	row-gap: 15px;
+	grid-template-areas: 
+		"connection-type-dropdown url-input"
+		"headers-list response-container"
+		"body-input response-container"
+		"send-button response-container";
+}
+
+.block {
+
+}
+
+.connection-type-dropdown { 
+	grid-area: connection-type-dropdown;
+}
+
+.url-input { 
+	grid-area: url-input;
+}
+
+.response-container { 
+	grid-area: response-container;
+}
+
+.headers-list {
+	grid-area: headers-list;
+}
+
+.body-input { 
+	grid-area: body-input;
+}
+
+.send-button { 
+	grid-area: send-button;
+}
+
+
+/* debug */
+
+.block {
+	background-color: #ffaaaa;
+}
