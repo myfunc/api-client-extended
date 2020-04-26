@@ -4,7 +4,7 @@ function main() {
 	selectAllHandle("#data-content");
 	addOption("toBase64", "Parse response to base64", false);
 	addOption("toMsgPack", "Parse response as msgpack", false);
-	addOption("isPrettyMsgPack", "Format msgpack", false);
+	addOption("isPrettyMsgPack", "Format json", false);
 	memorizeState("[data-memorize]");
 	$("#send-button").click(sendClick);
 }
@@ -90,11 +90,7 @@ async function sendClick() {
 			let blob = await result.blob();
 			let buffer = await blob.arrayBuffer();
 			let binArray = new Uint8Array(buffer);
-			let resultArray = JSON.stringify(msgpack.deserialize(binArray));
-			if (options.isPrettyMsgPack) {
-				resultArray = prettyArray(resultArray);
-			}
-			response = resultArray;
+			let response = JSON.stringify(msgpack.deserialize(binArray));
 		} else if (options.toBase64) {
 			let blob = await result.blob();
 			let buffer = await blob.arrayBuffer();
@@ -104,6 +100,9 @@ async function sendClick() {
 			response = await result.text();
 		}
 		clearError();
+		if (options.isPrettyMsgPack) {
+			response = prettyJson(response);
+		}
 		$("#data-content").text(response);
 	} catch (e) {
 		setError(e.message);
@@ -153,7 +152,7 @@ function addOption(code, name, checked) {
 	`));
 }
 
-function prettyArray(arrayStr) {
+function prettyJson(arrayStr) {
 	let options = {
 	    brace_style: "collapse",
 	    break_chained_methods: false,
