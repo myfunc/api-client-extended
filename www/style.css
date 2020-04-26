@@ -9,7 +9,7 @@ body {
 	margin: 10px;
 	display: grid;
 	grid-template-columns: 25% 75%;
-	grid-template-rows: 40px 80px auto auto 40px;
+	grid-template-rows: 40px 125px auto auto 40px;
 	column-gap: 5px;
 	row-gap: 5px;
 	grid-template-areas: 
@@ -92,6 +92,7 @@ body {
 .response-content {
 	position: absolute;
 	white-space: pre;
+	height: 100%;
 }
 
 .options-block {

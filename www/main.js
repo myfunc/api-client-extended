@@ -1,9 +1,27 @@
 $(document).ready(main);
 
 function main() {
-	addOption("toBase64", "Enable base64", false);
+	selectAllHandle("#data-content");
+	addOption("toBase64", "Parse response to base64", false);
+	addOption("toMsgPack", "Parse response as msgpack", false);
 	memorizeState("[data-memorize]");
 	$("#send-button").click(sendClick);
+}
+
+function selectAllHandle(selector) {
+	let elems = $(selector);
+	elems.click(p=>p.target.focus());
+	elems.on("keydown", (event) => {
+		if (event.ctrlKey == true 
+			&& (event.keyCode == 65 || event.keyCode == 97)) {
+			let elem = event.target;
+			var range = document.createRange();
+	        range.selectNode(elem);
+	        window.getSelection().removeAllRanges();
+	        window.getSelection().addRange(range);
+	        event.preventDefault();
+		}
+	});
 }
 
 function memorizeState(selector) {
@@ -11,7 +29,7 @@ function memorizeState(selector) {
 	var inputElems = inputs.get();
 	for (let elem of inputElems) {
 		var storedValue = localStorage.getItem(elem.id);
-		if (storedValue) {
+		if (storedValue !== null) {
 			setElemValue(elem, storedValue);
 		}
 	}
@@ -30,7 +48,8 @@ function getParameters() {
 	if (headerVal.includes(":")) {
 		let headerPairs = headerVal
 			.split(";")
-			.map(p => p.split(":").map(k=>k.trim()));
+			.map(p => p.split(":").map(k=>k.trim()))
+			.filter(p => p.length == 2);
 
 		for (let pair of headerPairs) {
 			headers[pair[0]] = pair[1];
@@ -66,8 +85,12 @@ async function sendClick() {
 		}
 
 		let response;
-
-		if (options.toBase64) {
+		if (options.toMsgPack) {
+			let blob = await result.blob();
+			let buffer = await blob.arrayBuffer();
+			let binArray = new Uint8Array(buffer);
+			response = JSON.stringify(msgpack.deserialize(binArray));
+		} else if (options.toBase64) {
 			let blob = await result.blob();
 			let buffer = await blob.arrayBuffer();
 			let binArray = new Uint8Array(buffer);
