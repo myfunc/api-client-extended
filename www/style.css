@@ -5,10 +5,11 @@ body {
 }
 
 .main-container {
+	height: 80vh;
 	margin: 10px;
 	display: grid;
 	grid-template-columns: 25% 75%;
-	grid-template-rows: 40px auto 150px 150px 40px;
+	grid-template-rows: 40px 80px auto auto 40px;
 	column-gap: 5px;
 	row-gap: 5px;
 	grid-template-areas: 
@@ -100,7 +101,7 @@ body {
 .option-row {
 	margin-bottom: 2px;
 	display: grid;
-	grid-template-columns: 50% 50%;
+	grid-template-columns: auto 20px;
 	column-gap: 10px;
 }
 
