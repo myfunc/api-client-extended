@@ -103,7 +103,7 @@ async function sendClick() {
 		} else {
 			response = await result.text();
 		}
-
+		clearError();
 		$("#data-content").text(response);
 	} catch (e) {
 		setError(e.message);
