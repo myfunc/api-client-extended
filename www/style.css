@@ -33,7 +33,8 @@ body {
 .url-block { 
 	grid-area: url-block;
 	display: grid;
-	grid-template-columns: 30px auto;
+	grid-template-columns: 35px 50px auto;
+	column-gap: 10px;
 }
 
 .url-label {
