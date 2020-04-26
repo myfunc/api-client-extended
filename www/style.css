@@ -93,6 +93,7 @@ body {
 	position: absolute;
 	white-space: pre;
 	height: 100%;
+	min-width: 100%;
 }
 
 .options-block {

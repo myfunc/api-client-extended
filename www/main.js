@@ -4,6 +4,7 @@ function main() {
 	selectAllHandle("#data-content");
 	addOption("toBase64", "Parse response to base64", false);
 	addOption("toMsgPack", "Parse response as msgpack", false);
+	addOption("isPrettyMsgPack", "Format msgpack", false);
 	memorizeState("[data-memorize]");
 	$("#send-button").click(sendClick);
 }
@@ -89,7 +90,11 @@ async function sendClick() {
 			let blob = await result.blob();
 			let buffer = await blob.arrayBuffer();
 			let binArray = new Uint8Array(buffer);
-			response = JSON.stringify(msgpack.deserialize(binArray));
+			let resultArray = JSON.stringify(msgpack.deserialize(binArray));
+			if (options.isPrettyMsgPack) {
+				resultArray = prettyArray(resultArray);
+			}
+			response = resultArray;
 		} else if (options.toBase64) {
 			let blob = await result.blob();
 			let buffer = await blob.arrayBuffer();
@@ -127,7 +132,7 @@ function getElemValue(elem) {
 
 function setElemValue(elem, value) {
 	if (elem.type == "checkbox") {
-		elem.checked = value;
+		elem.checked = value === "true";
 	} 
 	elem.value = value;
 }
@@ -146,4 +151,27 @@ function addOption(code, name, checked) {
 		<input data-memorize id="option-${code}" type="checkbox" class="option-value" ${checked ? "checked" : ""}>
 	</div>
 	`));
+}
+
+function prettyArray(arrayStr) {
+	let options = {
+	    brace_style: "collapse",
+	    break_chained_methods: false,
+	    comma_first: false,
+	    e4x: false,
+	    end_with_newline: false,
+	    indent_char: " ",
+	    indent_empty_lines: false,
+	    indent_inner_html: false,
+	    indent_scripts: "normal",
+	    indent_size: "4",
+	    jslint_happy: false,
+	    keep_array_indentation: false,
+	    max_preserve_newlines: "5",
+	    preserve_newlines: true,
+	    space_before_conditional: true,
+	    unescape_strings: false,
+	    wrap_line_length: "0"
+	}
+	return js_beautify(arrayStr, options);
 }
