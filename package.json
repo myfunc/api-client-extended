@@ -1,0 +1,22 @@
+{
+  "name": "api-client-extended",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server": "http-server --port 8080 -o www"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/myfunc/api-client-extended.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/myfunc/api-client-extended/issues"
+  },
+  "homepage": "https://github.com/myfunc/api-client-extended#readme",
+  "dependencies": {
+    "http-server": "^0.12.1"
+  }
+}
