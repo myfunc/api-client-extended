@@ -7,30 +7,51 @@
 	<script src="main.js"></script>
 </head>
 <body>
-	<div class="main-container">
-		<div class="block connection-type-block">HTTP</div>
-		<div class="block url-block">
-			<span class="url-label">URL: </span>
-			<div class="url-input-wrapper">
-				<input type="text" class="url-input">
-			</div>
+	<div class="window">
+		<div class="title">
+			<p class="title">Api Client Extended</p>
+			<button>X</button>
+			<button>?</button>
 		</div>
-		<div class="block response-block">Content</div>
-		<div class="block headers-block input-block">
-			<div class="label">Headers</div>
-			<div class="input-wrapper">
-				<textarea class="input"></textarea>
+		<div class="main-container">
+			<div class="block connection-type-block">HTTP</div>
+			<div class="block url-block">
+				<span class="url-label">URL: </span>
+				<div class="url-input-wrapper">
+					<input type="text" class="url-input">
+				</div>
 			</div>
-		</div>
-		<div class="block body-block input-block">
-			<div class="label">Body</div>
-			<div class="input-wrapper">
-				<textarea class="input"></textarea>
+			<div class="block response-block">
+				<div class="label">Response</div>
+				<div class="response-content">Content</div>
 			</div>
-		</div>
-		<div class="block send-button-block">
-			<div class="send-button">
-				<span class="send-button-text">Send</span>
+			<div class="block options-block input-block">
+				<div class="label">Options</div>
+				<div class="option-row">
+					<div class="option-name">Enable base64</div>
+					<input type="checkbox" class="option-value">
+				</div>
+				<div class="option-row">
+					<div class="option-name">Enable base64</div>
+					<input type="checkbox" class="option-value">
+				</div>
+			</div>
+			<div class="block headers-block input-block">
+				<div class="label">Headers</div>
+				<div class="input-wrapper">
+					<textarea class="input"></textarea>
+				</div>
+			</div>
+			<div class="block body-block input-block">
+				<div class="label">Body</div>
+				<div class="input-wrapper">
+					<textarea class="input"></textarea>
+				</div>
+			</div>
+			<div class="block send-button-block">
+				<div class="send-button">
+					<span class="send-button-text">Send</span>
+				</div>
 			</div>
 		</div>
 	</div>
