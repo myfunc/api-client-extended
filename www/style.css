@@ -1,49 +1,64 @@
 body {
 	margin: -10px 5px 0px -10px;
+	font-family: Consolas;
 }
 
 .main-container {
 	margin: 10px;
 	display: grid;
 	grid-template-columns: 25% 75%;
-	grid-template-rows: 50px 300px 300px 50px;
-	column-gap: 15px;
-	row-gap: 15px;
+	grid-template-rows: 40px 300px 300px 40px;
+	column-gap: 10px;
+	row-gap: 10px;
 	grid-template-areas: 
-		"connection-type-dropdown url-input"
-		"headers-list response-container"
-		"body-input response-container"
-		"send-button response-container";
+		"connection-type-block url-block"
+		"headers-block response-block"
+		"body-block response-block"
+		"send-button-block response-block";
 }
 
 .block {
-
+	padding: 10px;
 }
 
-.connection-type-dropdown { 
-	grid-area: connection-type-dropdown;
+.url-block { 
+	grid-area: url-block;
+	display: grid;
+	grid-template-columns: 50px auto ;
 }
 
-.url-input { 
-	grid-area: url-input;
+.url-label {
+	display: inline-block;
 }
 
-.response-container { 
-	grid-area: response-container;
+.url-input-wrapper {
+	display: inline-block;
 }
 
-.headers-list {
-	grid-area: headers-list;
+.url-input {
+	width: 100%;
+	margin:-3px;
 }
 
-.body-input { 
-	grid-area: body-input;
+.connection-type-block { 
+	grid-area: connection-type-block;
 }
 
-.send-button { 
-	grid-area: send-button;
+.response-block { 
+	grid-area: response-block;
 }
 
+.headers-block {
+	grid-area: headers-block;
+}
+
+.body-block { 
+	grid-area: body-block;
+}
+
+.send-button-block { 
+	grid-area: send-button-block;
+}
 
 /* debug */
 
