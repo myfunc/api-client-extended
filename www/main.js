@@ -90,7 +90,7 @@ async function sendClick() {
 			let blob = await result.blob();
 			let buffer = await blob.arrayBuffer();
 			let binArray = new Uint8Array(buffer);
-			let response = JSON.stringify(msgpack.deserialize(binArray));
+			response = JSON.stringify(msgpack.deserialize(binArray));
 		} else if (options.toBase64) {
 			let blob = await result.blob();
 			let buffer = await blob.arrayBuffer();
