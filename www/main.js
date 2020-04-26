@@ -1,12 +1,27 @@
 $(document).ready(main);
 
-function initOptions() {
-
-}
-
 function main() {
 	addOption("toBase64", "Enable base64", false);
+	memorizeState("[data-memorize]");
 	$("#send-button").click(sendClick);
+}
+
+function memorizeState(selector) {
+	var inputs = $(selector);
+	var inputElems = inputs.get();
+	for (let elem of inputElems) {
+		var storedValue = localStorage.getItem(elem.id);
+		if (storedValue) {
+			setElemValue(elem, storedValue);
+		}
+	}
+
+	setTimeout(()=>inputs.change(saveState), 5);
+}
+
+function saveState(e) {
+	let elem = e.target;
+	localStorage.setItem(elem.id, getElemValue(elem));
 }
 
 function getParameters() {
@@ -80,18 +95,32 @@ function clearError() {
 	$("#data-content").text("");
 }
 
+function getElemValue(elem) {
+	if (elem.type == "checkbox") {
+		return elem.checked;
+	} 
+	return elem.value;
+}
+
+function setElemValue(elem, value) {
+	if (elem.type == "checkbox") {
+		elem.checked = value;
+	} 
+	elem.value = value;
+}
+
 var options = {};
 
 function addOption(code, name, checked) {
 	Object.defineProperty(options, code, {
 		get() {
-			return $(`[data-code='${code}']>input`).prop("checked");
+			return $(`#option-${code}`).prop("checked");
 		}
 	});
 	$("#options-block").append($(`
-	<div class="option-row" data-code="${code}">
+	<div class="option-row">
 		<div class="option-name">${name}</div>
-		<input type="checkbox" class="option-value" ${checked ? "checked" : ""}>
+		<input data-memorize id="option-${code}" type="checkbox" class="option-value" ${checked ? "checked" : ""}>
 	</div>
 	`));
 }
