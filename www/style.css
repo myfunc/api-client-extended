@@ -8,7 +8,7 @@ body {
 	margin: 10px;
 	display: grid;
 	grid-template-columns: 25% 75%;
-	grid-template-rows: 40px auto 150px 150px 60px;
+	grid-template-rows: 40px auto 150px 150px 40px;
 	column-gap: 5px;
 	row-gap: 5px;
 	grid-template-areas: 
@@ -57,15 +57,40 @@ body {
 .response-block { 
 	grid-area: response-block;
 	grid-template-rows: 20px auto;
+	grid-template-columns: auto 20px;
+	grid-template-areas: 
+		"label error-sign"
+		"response response";
 	row-gap: 10px;
+	column-gap: 10px;
 	display: grid;
 }
 
-.response-content {
+.response-block>.label {
+	grid-area: label;
+}
+
+.error-sign {
+	grid-area: error-sign;
+	background: url(error.svg);
+	width: 20px;
+	height: 20px;
+	background-size: 20px 20px
+}
+
+.response-content-wrapper {
+	grid-area: response;
 	border: 1px solid gray;
 	width: 100%;
 	height: 100%;
 	background: white;
+	overflow: scroll;
+	position: relative;
+}
+
+.response-content {
+	position: absolute;
+	white-space: pre;
 }
 
 .options-block {

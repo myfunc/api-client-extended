@@ -19,40 +19,35 @@
 			<div class="block url-block">
 				<span class="url-label">URL: </span>
 				<div class="url-input-wrapper">
-					<input type="text" class="url-input" value="GET">
+					<input id="query-method" type="text" class="url-input" value="GET" >
 				</div>
 				<div class="url-input-wrapper">
-					<input type="text" class="url-input">
+					<input id="query-url" type="text" class="url-input">
 				</div>
 			</div>
 			<div class="block response-block">
 				<div class="label">Response</div>
-				<div class="response-content">Content</div>
+				<div class="error-sign" hidden></div>
+				<div class="response-content-wrapper">
+					<div id="data-content" class="response-content"></div>
+				</div>
 			</div>
-			<div class="block options-block input-block">
+			<div class="block options-block input-block" id="options-block">
 				<div class="label">Options</div>
-				<div class="option-row">
-					<div class="option-name">Enable base64</div>
-					<input type="checkbox" class="option-value">
-				</div>
-				<div class="option-row">
-					<div class="option-name">Enable base64</div>
-					<input type="checkbox" class="option-value">
-				</div>
 			</div>
 			<div class="block headers-block input-block">
 				<div class="label">Headers</div>
 				<div class="input-wrapper">
-					<textarea class="input"></textarea>
+					<textarea id="query-headers" class="input"></textarea>
 				</div>
 			</div>
 			<div class="block body-block input-block">
 				<div class="label">Body</div>
 				<div class="input-wrapper">
-					<textarea class="input"></textarea>
+					<textarea id="query-body" class="input"></textarea>
 				</div>
 			</div>
-			<div class="block send-button-block">
+			<div id="send-button" class="block send-button-block">
 				<div class="send-button">
 					<span class="send-button-text">Send</span>
 				</div>
